@@ -1,3 +1,6 @@
+arch:
+    - amd64
+    - ppc64le
 language: node_js
 node_js:
     - "4.5.0" # Oldest supported version
@@ -18,10 +21,12 @@ jobs:
           node_js: "12"
           install: cd test/webpack; npm install
           script: npm test
+          arch: amd64
 
         - name: node-web-backend
           node_js: "12"
           script: npm run-script test-node-web
+          arch: amd64
 
         - name: linters
           node_js: "12"
@@ -29,3 +34,25 @@ jobs:
           script:
               - eslint --max-warnings 0 .
               - prettier --check .
+          arch: amd64
+        
+        - name: webpack
+          node_js: "12"
+          install: cd test/webpack; npm install
+          script: npm test
+          arch: ppc64le
+
+        - name: node-web-backend
+          node_js: "12"
+          script: npm run-script test-node-web
+          arch: ppc64le
+
+        - name: linters
+          node_js: "12"
+          install: npm install
+          script:
+              - eslint --max-warnings 0 .
+              - prettier --check .
+          arch: ppc64le
+        
+          
