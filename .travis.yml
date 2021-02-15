@@ -3,13 +3,6 @@ arch:
     - ppc64le
 language: node_js
 node_js:
-    - "4.5.0" # Oldest supported version
-    - "5.10.0" # Oldest supported version from version 5.x
-    - "4"
-    - "6"
-    - "8"
-    - "10"
-    - "12"
     - "node"
 
 # Only install test-related modules on older Node versions
@@ -18,18 +11,18 @@ install: npm run-script test-install
 jobs:
     include:
         - name: webpack
-          node_js: "12"
+          node_js: "node"
           install: cd test/webpack; npm install
           script: npm test
           arch: amd64
 
         - name: node-web-backend
-          node_js: "12"
+          node_js: "node"
           script: npm run-script test-node-web
           arch: amd64
 
         - name: linters
-          node_js: "12"
+          node_js: "node"
           install: npm install
           script:
               - eslint --max-warnings 0 .
@@ -37,18 +30,18 @@ jobs:
           arch: amd64
         
         - name: webpack
-          node_js: "12"
+          node_js: "node"
           install: cd test/webpack; npm install
           script: npm test
           arch: ppc64le
 
         - name: node-web-backend
-          node_js: "12"
+          node_js: "node"
           script: npm run-script test-node-web
           arch: ppc64le
 
         - name: linters
-          node_js: "12"
+          node_js: "node"
           install: npm install
           script:
               - eslint --max-warnings 0 .
